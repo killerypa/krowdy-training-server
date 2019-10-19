@@ -1,0 +1,31 @@
+# Sistema de Ecommerce De Krowdi
+version: '3.3'
+
+services:
+  mongodb:
+    image: "mongo"
+    container_name: mongodb_krowdy
+    restart: on-failure
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: krowdy
+      MONGO_INITDB_ROOT_PASSWORD: krowdypass
+      MONGO_INITDB_DATABASE: krowdy
+    ports:
+      - 27017:27017
+    volumes:
+      - ./mongo-data:/data/db
+    # networks:
+      # krowdy:
+        # ipv4_address: 172.16.2.100
+
+
+#networks:
+ # krowdy:
+    # driver: bridge
+    #external: true
+      # ipam:
+      # config:
+      # - subnet: 172.16.2.0/24
+    # gateway: 192.168.100.1
+
+# docker network create --gateway 172.16.2.1 --subnet 172.16.2.0/24 krowdy
